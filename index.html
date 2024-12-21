@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kailey</title>
+    <link rel="icon" href="favicon-16x16.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="favicon-32x32.png" type="image/png" sizes="32x32">
+    <style>
+        /* Genel Sayfa Stili */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #212121;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #3f3f3f, #2b2b2b);
+        }
+
+        .container {
+            text-align: center;
+            background-color: #fff;
+            color: #333;
+            border-radius: 15px;
+            padding: 50px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 800px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .container:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: #555;
+        }
+
+        .btn {
+            font-size: 1.3rem;
+            padding: 18px 35px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            text-transform: uppercase;
+            margin: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-3px);
+        }
+
+        .btn:active {
+            background-color: #004085;
+            transform: translateY(3px);
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .icon {
+            font-size: 2rem;
+            margin-right: 10px;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            color: #fff;
+            font-size: 0.9rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Görevli Formları</h1>
+        <p>Pasiflik ve Sicile Göre Ban Talepleri formları için aşağıdaki butonları kullanabilirsiniz. İlgili formlara yönlendirilirsiniz.</p>
+
+        <div class="btn-container">
+            <!-- Pasiflik Formu Butonu -->
+            <a href="pasiflik.html" target="_blank">
+                <button class="btn">
+                    <span class="icon">📝</span> Pasiflik Formu
+                </button>
+            </a>
+
+            <!-- Sicile Göre Ban Talepleri Butonu -->
+            <a href="sicilegoreban.html" target="_blank">
+                <button class="btn">
+                    <span class="icon">⚖️</span> Sicile Göre Ban Talepleri Formu
+                </button>
+            </a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <!-- Footer yazısı kaldırıldı -->
+    </div>
+
+</body>
+</html>

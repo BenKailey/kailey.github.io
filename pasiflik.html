@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasiflik Formu</title>
+    <link rel="icon" href="favicon-16x16.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="favicon-32x32.png" type="image/png" sizes="32x32">
+    <style>
+        /* Sayfa Arka Planı */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212; /* Çok koyu gri arka plan */
+            color: #ecf0f1; /* Açık gri yazı rengi */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Sayfa tamamını kapsar */
+        }
+
+        /* Formun Genel Düzeni */
+        .container {
+            width: 60%; /* Form genişliği %60 */
+            max-width: 1000px; /* Maksimum genişlik 1000px */
+            min-height: 930px; /* Formun minimum yüksekliği 930px */
+            background-color: #ffffff; /* Form arka planı beyaz */
+            padding: 40px; /* Padding değeri artırıldı */
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            margin-right: 4%; /* Formu biraz sağa kaydırma */
+        }
+
+        /* Başlık */
+        h2 {
+            text-align: center;
+            color: #2c3e50; /* Başlık rengi koyu gri */
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        /* Form Etiketleri */
+        label {
+            font-weight: 600;
+            font-size: 16px;
+            color: #34495e; /* Etiket rengi koyu gri */
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        /* Form Alanları (Input ve Textarea) */
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #7f8c8d; /* Gri kenarlık */
+            border-radius: 8px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            background-color: #000000; /* Siyah arka plan */
+            color: #ffffff; /* Kullanıcı tarafından girilen metnin beyaz olması */
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        /* Focus Durumunda */
+        input:focus, textarea:focus {
+            border-color: #3498db; /* Mavi border */
+            outline: none;
+            background-color: #1a1a1a; /* Koyu siyah arka plan */
+        }
+
+        /* Placeholder Yazı Rengi (Hazır Yazılan Metin) */
+        input::placeholder, textarea::placeholder {
+            color: #ffffff; /* Placeholder (hazır yazı) rengini beyaz yapar */
+        }
+
+        /* BBCode Oluşturma Butonu */
+        button {
+            width: 100%;
+            padding: 14px;
+            background-color: #5c6bc0;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #3f51b5;
+        }
+
+        /* BBCode Çıktı Alanı */
+        .output {
+            background-color: #1a1a1a; /* BBCode çıktısı için koyu arka plan */
+            padding: 20px;
+            border: 1px solid #7f8c8d;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            overflow-wrap: break-word; /* Kelime kırılmasını sağlar */
+            word-wrap: break-word; /* Uzun kelimelerin taşmasını engeller */
+            margin-top: 20px;
+            box-sizing: border-box;
+            color: #ecf0f1; /* BBCode çıktısı için beyaz yazı rengi */
+            white-space: pre-wrap; /* Satır sonlarına geldiğinde taşmayı sağlar */
+            display: block; /* Blok eleman olarak davranır, böylece alt satıra kayar */
+            width: 100%;
+            height: auto; /* Yükseklik içerik arttıkça büyür */
+        }
+
+        /* Kopyala Butonu */
+        .copy-button {
+            margin-top: 10px;
+            padding: 12px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        .copy-button:hover {
+            background-color: #2980b9;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Pasiflik Formu</h2>
+
+    <!-- Pasiflik Süresi -->
+    <label for="inactiveTime">Pasiflik Süreniz:</label>
+    <input type="text" id="inactiveTime" placeholder="Pasiflik Sürenizi Girin" />
+
+    <!-- Pasiflik Nedeniniz -->
+    <label for="inactiveReason">Pasiflik Nedeniniz:</label>
+    <textarea id="inactiveReason" placeholder="Pasiflik Nedeninizi Buraya Yazın..."></textarea>
+
+    <!-- BBCode Oluştur Butonu -->
+    <button onclick="generateBBCode()">BBCode Oluştur</button>
+
+    <h3 style="color: black;">BBCode Çıktısı:</h3>
+    <div class="output" id="bbcodeOutput"></div>
+
+    <!-- Kopyala Butonu -->
+    <button class="copy-button" onclick="copyBBCode()">BBCode'u Kopyala</button>
+</div>
+
+<script>
+    // BBCode oluşturma fonksiyonu
+    function generateBBCode() {
+        // Kullanıcıdan alınan verileri alıyoruz
+        var inactiveTime = document.getElementById("inactiveTime").value;
+        var inactiveReason = document.getElementById("inactiveReason").value;
+
+        // BBCode formatında çıktıyı oluşturuyoruz
+        var bbcode = `
+[font=Courier]
+[b]Pasiflik süreniz:[/b] ${inactiveTime}
+[b]Pasiflik nedeniniz:[/b] ${inactiveReason}
+[/font]
+        `;
+
+        // BBCode çıktısını ekranda gösteriyoruz
+        document.getElementById("bbcodeOutput").textContent = bbcode.trim();
+    }
+
+    // BBCode çıktısını kopyalama fonksiyonu
+    function copyBBCode() {
+        var bbcodeOutput = document.getElementById("bbcodeOutput");
+        
+        // Çıktı metnini seçmek
+        var range = document.createRange();
+        range.selectNode(bbcodeOutput);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+        
+        // Kopyalama işlemini yapma
+        document.execCommand("copy");
+
+        // Kopyalandığını bildiren bir uyarı
+        alert("BBCode kopyalandı!");
+    }
+
+    // Sağ tıklamayı engellemek için event listener ekliyoruz
+    document.addEventListener("contextmenu", function(event) {
+        event.preventDefault();  // Sağ tıklamayı engelle
+    });
+</script>
+
+</body>
+</html>
